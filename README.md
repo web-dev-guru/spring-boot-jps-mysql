@@ -8,3 +8,4 @@ to be continue today...
 Optional<> Stream<>
 @Profile @ConfigureProperties
 @table herachey 
+java -jar -Dspring.profiles.active=prod -Dserver.contextPath=/wesley -Dserver.port=8888 target/mysqls.jar
