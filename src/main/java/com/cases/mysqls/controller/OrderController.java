@@ -2,6 +2,7 @@ package com.cases.mysqls.controller;
 
 import com.cases.mysqls.bean.OrderHeader;
 import com.cases.mysqls.bean.OrderLine;
+import com.cases.mysqls.service.LinePageableService;
 import com.cases.mysqls.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,13 @@ import java.util.Random;
 public class OrderController {
     @Autowired
     OrderService orderService;
-
+    @Autowired
+    LinePageableService linePageableService;
+    @GetMapping(value="/find/order/page")
+    public String findOrderLine(){
+        linePageableService.findAll().forEach(n->System.out.println(n.getItemNumber()));
+        return "success";
+    }
     @GetMapping(value="/new/order/{location}")
     public String newOrder(@PathVariable String location){
         /*
