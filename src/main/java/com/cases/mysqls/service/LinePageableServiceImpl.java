@@ -27,4 +27,11 @@ public class LinePageableServiceImpl implements LinePageableService {
         Page<OrderLine> o =lineRepository.findAll(pageable);
         return o;
     }
+
+    @Override
+    public Page<OrderLine> findByStr(int quantity) {
+        Pageable pageable = new PageRequest(1, 1, Sort.Direction.ASC, "lineId");
+        Page<OrderLine> o =lineRepository.findByStr(String.valueOf(quantity),pageable);
+        return o;
+    }
 }

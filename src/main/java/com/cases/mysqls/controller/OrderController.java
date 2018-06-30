@@ -25,6 +25,13 @@ public class OrderController {
         linePageableService.findAll().forEach(n->System.out.println(n.getItemNumber()));
         return "success";
     }
+
+    @GetMapping(value="/find/order/by/{q}")
+    public String findOrderLineByQuantity(@PathVariable String q){
+        int qq= Integer.parseInt(q);
+        linePageableService.findByStr(qq).forEach(n->System.out.println(n.getItemNumber()));
+        return "success";
+    }
     @GetMapping(value="/new/order/{location}")
     public String newOrder(@PathVariable String location){
         /*
