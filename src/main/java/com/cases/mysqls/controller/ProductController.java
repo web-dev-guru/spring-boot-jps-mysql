@@ -8,9 +8,7 @@ import com.cases.mysqls.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
@@ -43,11 +41,22 @@ public class ProductController {
         return "bb";
     }
 
-    @GetMapping(value="/call/{desc}")
-    public String callRemote(@PathVariable  String desc){
-        String url ="http://localhost:8080/find/product/by/"+desc;
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response=restTemplate.getForEntity( url, String.class);
-        return "ccc"+response.getBody();
+    @GetMapping(value="/update/{url}/by")
+    public String updateProductUrl(@PathVariable  String url){
+        String result=productService.updateStrByStr(url);
+        return "dd";
     }
+
+    @DeleteMapping(value="/callhandler/delete")
+    public void handleDeleteRestCall(){
+       System.out.println("handle delete");
+    }
+
+    @PutMapping(value="/callhandler/put")
+    public String handlePutExchangeRestCall(@RequestBody String user ){
+        System.out.println("get into exchange handler");
+        System.out.println(user);
+        return "put";
+    }
+
 }

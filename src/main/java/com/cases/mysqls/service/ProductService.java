@@ -9,5 +9,6 @@ public interface ProductService {
     public List<Product> findAll();
     public Product saveOrUpdate(Product product);
     public List<String> findByStr(String desc);
+    public String updateStrByStr(String url);
 
 }

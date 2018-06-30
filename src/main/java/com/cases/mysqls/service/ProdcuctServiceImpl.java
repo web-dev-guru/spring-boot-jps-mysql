@@ -32,5 +32,9 @@ public class ProdcuctServiceImpl implements ProductService {
         return product;
     }
 
-
+    @Override
+    public String updateStrByStr(String url) {
+       productRepository.updateStrByStr(url);
+        return "update successfully";
+    }
 }
